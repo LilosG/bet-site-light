@@ -12,9 +12,9 @@
    e.g. bg-gold, text-teal, border-gold etc.
    ─────────────────────────────────────────── */
 @theme {
-  --color-bg:           #0B0C0F;
-  --color-bg-2:         #111318;
-  --color-bg-card:      #16191F;
+  --color-bg:           #F5F3EF;
+  --color-bg-2:         #ECEAE4;
+  --color-bg-card:      #FFFFFF;
   --color-bg-light:     #F5F3EF;
   --color-bg-light-2:   #ECEAE4;
   --color-gold:         #C9963A;
@@ -22,9 +22,9 @@
   --color-teal:         #0D9488;
   --color-teal-hover:   #0F766E;
   --color-white:        #FFFFFF;
-  --color-text:         #E8E6E1;
-  --color-text-muted:   #9CA3B0;
-  --color-text-subtle:  #6B7280;
+  --color-text:         #1A1C20;
+  --color-text-muted:   #4B5563;
+  --color-text-subtle:  #9CA3AF;
 
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body:    'DM Sans', sans-serif;
@@ -34,9 +34,9 @@
 /* ─── CSS Custom Properties (runtime use) ─── */
 @layer base {
   :root {
-    --color-bg:           #0B0C0F;
-    --color-bg-2:         #111318;
-    --color-bg-card:      #16191F;
+    --color-bg:           #F5F3EF;
+    --color-bg-2:         #ECEAE4;
+    --color-bg-card:      #FFFFFF;
     --color-bg-light:     #F5F3EF;
     --color-bg-light-2:   #ECEAE4;
     --color-gold:         #C9963A;
@@ -46,11 +46,11 @@
     --color-teal-hover:   #0F766E;
     --color-teal-dim:     rgba(13,148,136,0.12);
     --color-white:        #FFFFFF;
-    --color-text:         #E8E6E1;
-    --color-text-muted:   #9CA3B0;
-    --color-text-subtle:  #6B7280;
-    --color-border:       rgba(255,255,255,0.07);
-    --color-border-gold:  rgba(201,150,58,0.28);
+    --color-text:         #1A1C20;
+    --color-text-muted:   #4B5563;
+    --color-text-subtle:  #9CA3AF;
+    --color-border:       rgba(0,0,0,0.09);
+    --color-border-gold:  rgba(201,150,58,0.35);
 
     --font-display: 'Barlow Condensed', sans-serif;
     --font-body:    'DM Sans', sans-serif;
@@ -92,7 +92,7 @@
     font-family: var(--font-display);
     font-weight: 700;
     line-height: 1.05;
-    color: var(--color-white);
+    color: #0B0C0F;
     letter-spacing: -0.01em;
   }
 
@@ -310,7 +310,7 @@
   .card:hover {
     border-color: var(--color-border-gold);
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   }
 
   /* ── Tags / Badges ── */
@@ -418,6 +418,6 @@
 
 /* ─── Scrollbar ───────────────────────────── */
 ::-webkit-scrollbar       { width: 5px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: #2a2d35; border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--color-bg-2); }
+::-webkit-scrollbar-thumb { background: #C9C5BC; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-subtle); }
