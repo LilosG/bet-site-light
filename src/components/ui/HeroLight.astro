@@ -1,0 +1,316 @@
+---
+/**
+ * HeroLight.astro
+ * Light theme hero component for bet-site-light.
+ * Cream/warm background, dark type, equipment image right column.
+ * Pulls stats and NAP from central data — zero hardcoding.
+ */
+import { NAP, SITE } from '../../data/site';
+
+export interface Props {
+  h1?: string;
+  subtext?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const {
+  h1 = 'New and Used Brewery Equipment For Sale.',
+  subtext = 'Operating from a 40,000 sq ft consolidation facility in San Marcos, California. Every asset is mechanically inspected, photographed, and certified before listing. Nationwide rigging, freight, and white-glove install on every transaction.',
+  primaryLabel = 'Browse Live Inventory',
+  primaryHref = 'https://beverageequipmenttraders.com/collections/all',
+  secondaryLabel = 'Schedule a Technical Call',
+  secondaryHref = '/contact?type=rigging',
+  image = '/images/hero-brewhouse.webp',
+  imageAlt = 'Marks brewhouse — Beverage Equipment Traders inventory',
+} = Astro.props;
+---
+
+<section class="hero-light" aria-label="Hero">
+  <div class="container hero-light-inner">
+
+    <!-- Left: Content -->
+    <div class="hero-light-content">
+
+      <div class="hero-light-badge animate-fade-up">
+        <span class="hero-light-dot" aria-hidden="true"></span>
+        <span>Live Inventory</span>
+        <span class="hero-light-sep" aria-hidden="true">·</span>
+        <span>San Marcos, CA</span>
+        <span class="hero-light-sep" aria-hidden="true">·</span>
+        <span>Updated Daily</span>
+      </div>
+
+      <h1 class="hero-light-h1 animate-fade-up delay-100">{h1}</h1>
+
+      <p class="hero-light-sub animate-fade-up delay-200">{subtext}</p>
+
+      <div class="hero-light-ctas animate-fade-up delay-300">
+        <a
+          href={primaryHref}
+          class="btn btn-primary btn-lg"
+          target={primaryHref.startsWith('http') ? '_blank' : undefined}
+          rel={primaryHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          {primaryLabel}
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href={secondaryHref} class="btn btn-dark btn-lg">
+          {secondaryLabel}
+        </a>
+      </div>
+
+      <div class="hero-light-stats animate-fade-up delay-400" aria-label="Key statistics">
+        <div class="hero-light-stat">
+          <span class="hero-light-stat-val">40K</span>
+          <span class="hero-light-stat-label">Sq Ft Facility</span>
+        </div>
+        <span class="hero-light-stat-div" aria-hidden="true"></span>
+        <div class="hero-light-stat">
+          <span class="hero-light-stat-val">50</span>
+          <span class="hero-light-stat-label">States Served</span>
+        </div>
+        <span class="hero-light-stat-div" aria-hidden="true"></span>
+        <div class="hero-light-stat">
+          <span class="hero-light-stat-val">600+</span>
+          <span class="hero-light-stat-label">Placements</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: Equipment image -->
+    <div class="hero-light-img-col animate-fade-up delay-200" aria-hidden="true">
+      <div class="hero-light-img-frame">
+        <img
+          src={image}
+          alt={imageAlt}
+          class="hero-light-img"
+          loading="eager"
+          decoding="async"
+          width="680"
+          height="520"
+        />
+        <div class="hero-light-img-caption">
+          <span class="hero-light-img-label">San Marcos, CA Facility</span>
+          <span class="hero-light-img-sub">40,000 sq ft · 225+ items in stock</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero-light {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle warm tint top-right */
+  .hero-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 30%, rgba(201,150,58,0.04) 100%);
+    pointer-events: none;
+  }
+
+  .hero-light-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── Badge ──────────────────────────────── */
+  .hero-light-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,0,0,0.04);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    padding: 0.3125rem 0.875rem;
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: #4B5563;
+    margin-bottom: 1.375rem;
+  }
+
+  .hero-light-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-teal);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+    flex-shrink: 0;
+  }
+
+  .hero-light-sep { color: #9CA3AF; }
+
+  /* ─── H1 ─────────────────────────────────── */
+  .hero-light-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 1.125rem;
+    color: #0B0C0F;
+  }
+
+  /* ─── Subtext ────────────────────────────── */
+  .hero-light-sub {
+    font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+    max-width: 52ch;
+    margin: 0 0 2rem;
+    line-height: 1.7;
+    color: #4B5563;
+  }
+
+  /* ─── CTAs ───────────────────────────────── */
+  .hero-light-ctas {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.25rem;
+  }
+
+  /* ─── Stats ──────────────────────────────── */
+  .hero-light-stats {
+    display: flex;
+    align-items: center;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .hero-light-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .hero-light-stat-val {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-light-stat-label {
+    font-family: var(--font-ui);
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9CA3AF;
+    margin-top: 0.2rem;
+    white-space: nowrap;
+  }
+
+  .hero-light-stat-div {
+    width: 1px;
+    height: 2.25rem;
+    background: var(--color-border);
+    flex-shrink: 0;
+    margin-right: 1.5rem;
+  }
+
+  /* ─── Image column ───────────────────────── */
+  .hero-light-img-col {
+    position: relative;
+  }
+
+  .hero-light-img-frame {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: #E5E2DB;
+    box-shadow:
+      0 20px 60px rgba(0,0,0,0.12),
+      0 0 0 1px rgba(201,150,58,0.2);
+  }
+
+  .hero-light-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-light-img-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1.25rem 1.125rem;
+    background: linear-gradient(to top, rgba(11,12,15,0.75) 0%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .hero-light-img-label {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-light-img-sub {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ─── Responsive ─────────────────────────── */
+  @media (max-width: 1024px) {
+    .hero-light-inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero-light-img-col {
+      max-width: 560px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-light-ctas {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-light-stats {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-light-stat-div { display: none; }
+  }
+</style>
