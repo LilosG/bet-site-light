@@ -96,6 +96,17 @@ const { title, description, href, icon, index = 0 } = Astro.props;
     transition: color var(--transition-base);
   }
 
+  /* Light context override */
+  :global(.bg-light) .service-title,
+  :global([class*="light"]) .service-title {
+    color: #0B0C0F;
+  }
+
+  :global(.bg-light) .service-desc,
+  :global([class*="light"]) .service-desc {
+    color: #4B5563;
+  }
+
   .service-card:hover .service-title {
     color: var(--color-gold);
   }
